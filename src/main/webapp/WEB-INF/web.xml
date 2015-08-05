@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>api-rote</display-name>
+	<!-- Spring -->
+	<!-- Define os arquivos de configuracoes XML para o contexto Spring -->
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-context.xml</param-value>
+	</context-param>
+	
+<!-- 	<filter>
+		The CORS filter with parameters
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+
+		<init-param>
+			<param-name>cors.allowGenericHttpRequests</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowSubdomains</param-name>
+			<param-value>false</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, HEAD, POST, OPTIONS, PUT, DELETE</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.maxAge</param-name>
+			<param-value>3600</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.tagRequests</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+ -->
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	
+	<servlet>
+		<servlet-name>cxf-servlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cxf-servlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+
+
+</web-app>

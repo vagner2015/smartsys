@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
+    xsi:schemaLocation="
+                        http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://cxf.apache.org/jaxrs 
+                        http://cxf.apache.org/schemas/jaxrs.xsd
+                        http://cxf.apache.org/core 
+                          http://cxf.apache.org/schemas/core.xsd">
+
+    <!-- Importando cxf.xml -->
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+
+    <!-- Importando cxf-servlet.xml -->
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <!-- Declarando JSON Provider -->
+    <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+
+    <!-- Declarando JAXB Provider -->
+    <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"/>
+
+    <!-- Declarando jaxrs:server -->
+    <jaxrs:server id="rest" address="/rest">
+        <jaxrs:serviceBeans>
+            <ref bean="mapResource" />
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json" />
+            <entry key="xml" value="application/xml" />
+        </jaxrs:extensionMappings>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+            <ref bean="jaxbProvider"/>
+        </jaxrs:providers>            
+        <jaxrs:features>
+            <cxf:logging />
+        </jaxrs:features>
+    </jaxrs:server>
+
+</beans>
